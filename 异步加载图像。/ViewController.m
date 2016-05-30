@@ -60,6 +60,8 @@ static NSString *cellId = @"cellId";
     [_imageCache removeAllObjects];
     
     [_downloadQueue cancelAllOperations];
+    
+    [_operationCache removeAllObjects];
 }
 
 -(void)loadData{
@@ -132,10 +134,15 @@ static NSString *cellId = @"cellId";
         
 //        model.image = image;
         //将图像保存到缓冲池
-        [self.imageCache setObject:image forKey:model.icon];
+        
+        if (image != nil) {
+            [self.imageCache setObject:image forKey:model.icon];
+        }
+        
+        [self.operationCache removeObjectForKey:model.icon];
         
         [[NSOperationQueue mainQueue]addOperationWithBlock:^{
-            NSLog(@"队列中的下载操作数：%zd", self.downloadQueue.operationCount);
+            NSLog(@"队列中的下载操作数：%zd %@", self.downloadQueue.operationCount,self.operationCache);
             
             cell.iconView.image = image;
         }];
