@@ -6,7 +6,7 @@
 //  Copyright © 2016年 张玺科. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
 @interface KKAppInfo : NSObject
 
@@ -16,6 +16,6 @@
 
 @property(nonatomic,copy)NSString *icon;
 
-@property(nonatomic,strong)UIImage *image;
+//@property(nonatomic,strong)UIImage *image;
 
 @end
